@@ -515,7 +515,8 @@ END
 start_guacamole() {
 
     # Install webapp
-    ln -sf /opt/guacamole/guacamole.war /usr/local/tomcat/webapps/${WEBAPP_CONTEXT:-guacamole}.war
+    rm -rf /usr/local/tomcat/webapps/ROOT
+    ln -sf /opt/guacamole/guacamole.war /usr/local/tomcat/webapps/${WEBAPP_CONTEXT:-ROOT}.war
 
     # Start tomcat
     cd /usr/local/tomcat

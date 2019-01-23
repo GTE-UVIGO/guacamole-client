@@ -58,5 +58,14 @@ COPY --from=builder /opt/guacamole/ .
 
 # Start Guacamole under Tomcat, listening on 0.0.0.0:8080
 EXPOSE 8080
+
+ARG USER
+ARG UID
+RUN useradd -u $UID $USER
+RUN mkdir /home/$USER
+RUN chown -R $USER /home/$USER
+RUN chown $USER /usr/local/tomcat/webapps
+
+USER $USER:$USER
 CMD ["/opt/guacamole/bin/start.sh" ]
 
